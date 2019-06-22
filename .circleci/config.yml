@@ -27,6 +27,6 @@ workflows:
       - testJob:
           requires:
             - lintJob
-      - deployJob:
-          requires:
-            - testJob
+      # - deployJob:
+      #     requires:
+      #       - testJob
