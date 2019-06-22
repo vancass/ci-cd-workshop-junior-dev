@@ -1,13 +1,13 @@
 version: 2
 jobs:
-  lint:
+  lintJob:
     docker: # use the docker executor type; machine and macos executors are also supported
       - image: circleci/node:10.15.3 # the primary container, where your job's commands are run
     steps:
       - checkout # check out the code in the project directory
       - run: npm install
       - run: npm run lint # run the `echo` command
-  test:
+  testJob:
     docker:
       - image: circleci/node:10.15.3
     steps:
@@ -17,7 +17,7 @@ workflows:
   version: 2
   any_build_name:
     jobs:
-      - lint
-      - test:
-          requires:
-            - lint
+      - lintJob
+      - testJob:
+        requires:
+          - lintJob
