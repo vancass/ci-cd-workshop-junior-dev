@@ -19,5 +19,5 @@ workflows:
     jobs:
       - lintJob
       - testJob:
-        requires:
-          - lintJob
+          requires:
+            - lintJob
