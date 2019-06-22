@@ -13,12 +13,12 @@ jobs:
     steps:
       - checkout
       - run: npm install && npm test
-      # - run: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
-  deployJob:
-    docker:
-      - image: circleci/node:10.15.3
-    steps:
       - run: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+  # deployJob:
+  #   docker:
+  #     - image: circleci/node:10.15.3
+  #   steps:
+  #     - run: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
 workflows:
   version: 2
   any_build_name:
@@ -27,6 +27,6 @@ workflows:
       - testJob:
           requires:
             - lintJob
-      - deployJob:
-          requires:
-            - testJob
+      # - deployJob:
+      #     requires:
+      #       - testJob
